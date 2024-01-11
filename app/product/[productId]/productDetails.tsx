@@ -1,15 +1,48 @@
 "use client";
 
 import { Rating } from "@mui/material";
+import { useState } from "react";
 
 interface ProductDetailsProps {
   product: any;
 }
 
+export type CartProductType = {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  brand: string;
+  selectedImg: SelectedImgType;
+  quantity: number;
+  price: number;
+};
+
+export type SelectedImgType = {
+  color: string;
+  colorCode: string;
+  image: string;
+};
+
+const Horizontal = () => {
+  return <hr className="w-[30%] my-2" />;
+};
+
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
+  const [cartProduct, setCartProduct] = useState<CartProductType>({
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    category: product.category,
+    brand: product.brand,
+    selectedImg: { ...product.images },
+    quantity: number,
+    price: number,
+  });
   const productRating =
     product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
     product.reviews.length;
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 ">
       <div>Images</div>
@@ -19,7 +52,26 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           <Rating value={productRating} readOnly />
           <div>{product.reviews.length} Reviews</div>
         </div>
+        <Horizontal />
         <div className="text-justify">{product.description}</div>
+        <Horizontal />
+        <div>
+          <span className="font-semibold">CATEGORY:</span>
+          {product.category}
+        </div>
+        <div>
+          <span className="font-semibold">BRAND:</span>
+          {product.brand}
+        </div>
+        <div className={product.inStock ? "text-teal-400" : "text-rose-400"}>
+          {product.inStock ? "in Stock" : "Out of Stock"}
+        </div>
+        <Horizontal />
+        <div>color</div>
+        <Horizontal />
+        <div>Quantity</div>
+        <Horizontal />
+        <div>Add to Cart</div>
       </div>
     </div>
   );
