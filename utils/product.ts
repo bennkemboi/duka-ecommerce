@@ -39,7 +39,7 @@ export const product =
         createdDate: "2023-06-26T15:53:44.483Z",
         user: {
           id: "6499b184b0e9a8c8709821d3",
-          name: "Chaoo",
+          name: "Bennie",
           email: "example1@gmail.com",
           emailVerified: null,
           image:
@@ -59,7 +59,7 @@ export const product =
         createdDate: "2023-06-26T14:30:40.998Z",
         user: {
           id: "6475af156bad4917456e6e1e",
-          name: "Charles",
+          name: "Benson",
           email: "example@gmail.com",
           emailVerified: null,
           image:
